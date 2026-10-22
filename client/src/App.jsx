@@ -28,7 +28,7 @@ import { AdvancedReport } from './Pages/Admin/AdvancedReport';
 import { useEffect } from 'react';
 import { socket } from './socket';
 
-export const server_url = "http://localhost:5000";
+export const server_url = import.meta.env.VITE_SERVER_URL;
 
 const App = () => {
   // socket connect for live count

@@ -5,6 +5,7 @@ import {
   ChevronLeft, ChevronRight, GraduationCap,
   Calendar, BookOpen, User
 } from "lucide-react";
+import { server_url } from "../../App";
 
 export const AdvancedReport = () => {
   // --- States ---
@@ -32,7 +33,7 @@ export const AdvancedReport = () => {
   // Master data fetch karne ke liye (Dropdowns ke liye)
   const handlefetchSession = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/session", { withCredentials: true });
+      const res = await axios.get(`${server_url}/api/session`, { withCredentials: true });
       setAllSessions(res.data.result);
     } catch (err) {
       console.error("Fetch error:", err);
@@ -71,7 +72,7 @@ export const AdvancedReport = () => {
   const fetchReports = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:5000/api/exams/report", {
+      const res = await axios.get(`${server_url}/api/exams/report`, {
         params: filters
       });
       if (res.data.success) {
@@ -97,7 +98,7 @@ export const AdvancedReport = () => {
   // --- Handlers ---
   const handleExportExcel = () => {
     const queryParams = new URLSearchParams({ ...filters, exportExcel: "true" }).toString();
-    window.location.href = `http://localhost:5000/api/exams/report?${queryParams}`;
+    window.location.href = `${server_url}/api/exams/report?${queryParams}`;
   };
 
   const updateFilter = (e) => {

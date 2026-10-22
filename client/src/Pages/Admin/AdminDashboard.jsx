@@ -65,7 +65,7 @@ export const AdminDashboard = () => {
 
     useEffect(() => {
         // 1. Socket Connection banayein (Backend URL ke saath)
-        const socket = io("http://localhost:5000", {
+        const socket = io(server_url, {
             withCredentials: true
         });
 
