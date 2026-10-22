@@ -1,5 +1,6 @@
 const { Admin } = require("../models/admin-model");
-const os = require('os'); 
+const { getAuthCookieOptions } = require("../config/auth-cookie");
+const os = require('os');
 
 // Register Admin
 const registerAdmin = async (req, res) => {
@@ -31,9 +32,7 @@ const registerAdmin = async (req, res) => {
 
         // Send token in cookie
         res.cookie("token", token, {
-            httpOnly: true,               // JS access block
-            secure: false,                // production me true (HTTPS)
-            sameSite: "strict",
+            ...getAuthCookieOptions(req),
             maxAge: 24 * 60 * 60 * 1000   // 1 day
         });
 
@@ -91,9 +90,7 @@ const loginAdmin = async (req, res) => {
 
         // Send token in cookie
         res.cookie("token", token, {
-            httpOnly: true,               // JS access block
-            secure: false,                // production me true (HTTPS)
-            sameSite: "strict",
+            ...getAuthCookieOptions(req),
             maxAge: 24 * 60 * 60 * 1000   // 1 day
         });
 
@@ -118,11 +115,7 @@ const loginAdmin = async (req, res) => {
 // logoutAdmin
 const logoutAdmin = (req, res) => {
     try {
-        res.clearCookie("token", {
-            httpOnly: true,
-            sameSite: "strict",
-            secure: false // production me true
-        });
+        res.clearCookie("token", getAuthCookieOptions(req));
 
         return res.status(200).json({
             success: true,

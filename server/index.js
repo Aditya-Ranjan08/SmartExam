@@ -20,6 +20,7 @@ const { Examinee } = require("./models/examinee-model");
 
 const app = express();
 const server = http.createServer(app); // 4. Server create karein
+app.set("trust proxy", 1);
 
 const allowedOrigins = [
     "https://smart-exam-kappa.vercel.app",

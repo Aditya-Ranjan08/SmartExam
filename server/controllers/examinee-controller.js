@@ -1,5 +1,6 @@
 const { cloudinary } = require("../config/cloudinary");
 const { Examinee } = require("../models/examinee-model");
+const { getAuthCookieOptions } = require("../config/auth-cookie");
 const fs = require("fs");
 const XLSX = require("xlsx")
 
@@ -74,9 +75,7 @@ const register = async (req, res) => {
 
         // Send token in cookie
         res.cookie("token", token, {
-            httpOnly: true,               // JS access block
-            secure: false,                // production me true (HTTPS)
-            sameSite: "lax",
+            ...getAuthCookieOptions(req),
             maxAge: 24 * 60 * 60 * 1000   // 1 day
         });
 
@@ -129,9 +128,7 @@ const login = async (req, res) => {
 
         // Send token in cookie
         res.cookie("token", token, {
-            httpOnly: true,               // JS access block
-            secure: false,                // production me true (HTTPS)
-            sameSite: "lax",
+            ...getAuthCookieOptions(req),
             maxAge: 24 * 60 * 60 * 1000   // 1 day
         });
 
@@ -460,11 +457,7 @@ const changePassword = async (req, res) => {
 
 const logout = async (req, res) => {
     try {
-        res.clearCookie("token", {
-            httpOnly: true,
-            sameSite: "lax",
-            secure: false   // production me true
-        });
+        res.clearCookie("token", getAuthCookieOptions(req));
 
         return res.status(200).json({
             success: true,
