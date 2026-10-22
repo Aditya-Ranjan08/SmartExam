@@ -1,0 +1,569 @@
+.student-workspace {
+    width: 100%;
+    color: #17233e;
+    background: #f3f6ff;
+    overflow-x: hidden;
+}
+
+.student-sidebar {
+    width: 272px;
+    color: #eff6ff;
+    background:
+        radial-gradient(ellipse at 0% 0%, rgba(59, 130, 246, 0.16), transparent 38%),
+        linear-gradient(180deg, #17366f 0%, #102b5b 52%, #0b1b3c 100%);
+    border-right: 1px solid rgba(23, 54, 111, 0.1);
+    box-shadow: 10px 0 32px rgba(15, 35, 76, 0.16);
+}
+
+.student-sidebar-brand {
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.student-sidebar-brand .text-blue-600 {
+    color: #67e8f9;
+}
+
+.student-brand-mark {
+    color: #fff;
+    background: linear-gradient(140deg, #67e8f9, #2563eb);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.28);
+}
+
+.student-sidebar-profile {
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(96, 165, 250, 0.04));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.student-sidebar-profile h2 {
+    color: #fff;
+}
+
+.student-sidebar-avatar {
+    color: #fff;
+    background: linear-gradient(140deg, #38bdf8, #4f46e5);
+    border: 3px solid rgba(255, 255, 255, 0.86);
+    box-shadow: 0 8px 20px rgba(2, 8, 23, 0.26);
+}
+
+.student-online-indicator {
+    background: #2cc59b;
+    border: 3px solid #17366f;
+}
+
+.student-sidebar-email {
+    color: rgba(219, 234, 254, 0.62);
+}
+
+.student-menu-label {
+    color: rgba(219, 234, 254, 0.55);
+}
+
+.student-nav-link {
+    color: rgba(219, 234, 254, 0.76);
+    gap: 0.8rem;
+    min-height: 46px;
+}
+
+.student-nav-link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+.student-nav-link:hover .student-nav-icon {
+    transform: translateX(2px);
+}
+
+.student-nav-link-active,
+.student-nav-link-active:hover {
+    color: #fff;
+    background: linear-gradient(105deg, #3b82f6, #4f46e5);
+    box-shadow: 0 8px 18px rgba(2, 8, 23, 0.2);
+}
+
+.student-sidebar-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(8, 23, 53, 0.25);
+}
+
+.student-logout {
+    color: #ffe4e6;
+    background: rgba(251, 113, 133, 0.1);
+    border: 1px solid rgba(254, 205, 211, 0.2);
+    box-shadow: none;
+}
+
+.student-logout:hover {
+    color: #fff;
+    background: #e11d48;
+    border-color: #fda4af;
+}
+
+.student-workspace-main {
+    width: 0;
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+.student-workspace-header {
+    min-height: 72px;
+    color: #263653;
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #e6ebf5;
+    box-shadow: 0 4px 18px rgba(40, 62, 114, 0.035);
+    backdrop-filter: blur(16px);
+}
+
+.student-date,
+.student-breadcrumb {
+    color: #8b98b2;
+    border-color: #e4e9f4;
+}
+
+.student-accent {
+    color: #4269e8;
+}
+
+.student-role-label {
+    color: #7887a4;
+}
+
+.student-header-avatar {
+    color: #4269e8;
+    background: linear-gradient(140deg, #e8f1ff, #f0eaff);
+    border: 1px solid #dbe5fa;
+}
+
+.student-workspace-content {
+    min-width: 0;
+    overflow-x: hidden;
+    background:
+        radial-gradient(ellipse at 100% 0%, rgba(219, 234, 254, 0.46), transparent 34%),
+        radial-gradient(ellipse at 0% 100%, rgba(224, 231, 255, 0.4), transparent 32%),
+        #f5f7ff;
+}
+
+.student-workspace-page {
+    width: 100%;
+    min-width: 0;
+}
+
+.student-workspace-content > .student-workspace-page > :not(.student-dashboard-home) {
+    color: #263653;
+}
+
+.student-workspace-content :is(input, select, textarea) {
+    border-color: #dbe4f4;
+    color: #253554;
+    background-color: #fff;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.student-workspace-content :is(input, select, textarea)::placeholder {
+    color: #9aa7bc;
+}
+
+.student-workspace-content :is(input, select, textarea):focus {
+    border-color: #6b7df0;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(88, 119, 236, 0.12);
+}
+
+.student-workspace-content :is(input, select, textarea):disabled {
+    color: #8491a7;
+    background-color: #f5f7fc;
+}
+
+.student-workspace-content :is(button, a) {
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.student-workspace-content :is(button, a):focus-visible {
+    outline: 3px solid rgba(88, 119, 236, 0.4);
+    outline-offset: 2px;
+}
+
+.student-workspace-content :is(h1, h2, h3) {
+    color: #1c2a48;
+}
+
+.student-workspace-content .text-indigo-600,
+.student-workspace-content .text-indigo-700,
+.student-workspace-content .text-indigo-800 {
+    color: #4269e8 !important;
+}
+
+.student-workspace-content .bg-indigo-600,
+.student-workspace-content .bg-indigo-700 {
+    background-color: #4269e8 !important;
+}
+
+.student-workspace-content .bg-indigo-50 {
+    background-color: #eef3ff !important;
+}
+
+.student-workspace-content .bg-indigo-100 {
+    background-color: #e4edff !important;
+}
+
+.student-workspace-content .border-indigo-50,
+.student-workspace-content .border-indigo-100,
+.student-workspace-content .border-indigo-200 {
+    border-color: #dce6fb !important;
+}
+
+.student-workspace-content table {
+    color: #34415f;
+}
+
+.student-workspace-content table thead {
+    color: #66738f;
+    background: #f3f6ff;
+}
+
+.student-workspace-content table th {
+    border-color: #e6ebf5;
+    padding: 0.9rem 1rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.student-workspace-content table td {
+    border-color: #edf1f8;
+    padding: 0.9rem 1rem;
+    vertical-align: middle;
+}
+
+.student-workspace-content table tbody tr {
+    transition: background-color 150ms ease;
+}
+
+.student-workspace-content table tbody tr:hover {
+    background: #f8faff;
+}
+
+.student-workspace-content .overflow-x-auto {
+    max-width: 100%;
+    scrollbar-color: #cbd5e1 transparent;
+    scrollbar-width: thin;
+}
+
+.student-dashboard-home {
+    background: transparent;
+}
+
+.student-dashboard-heading {
+    position: relative;
+    padding: 1.6rem 1.75rem;
+    overflow: hidden;
+    border: 1px solid #e4eafd;
+    border-radius: 1.25rem;
+    background:
+        radial-gradient(ellipse at 100% 10%, rgba(207, 222, 255, 0.86), transparent 40%),
+        linear-gradient(115deg, #fff, #f6f7ff);
+    box-shadow: 0 8px 24px rgba(50, 77, 143, 0.05);
+}
+
+.student-eyebrow {
+    display: inline-block;
+    margin-bottom: 0.45rem;
+    color: #6176cf;
+    font-size: 0.67rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.student-muted {
+    color: #71809c;
+}
+
+.student-stat-card {
+    min-width: 0;
+    border-color: #e5eaf5;
+    box-shadow: 0 8px 22px rgba(36, 62, 125, 0.045);
+}
+
+.student-stat-card:hover {
+    border-color: #cddafd;
+    box-shadow: 0 14px 30px rgba(53, 83, 159, 0.1);
+    transform: translateY(-2px);
+}
+
+.student-stat-value {
+    color: #1d2b49;
+}
+
+.student-chart-card,
+.student-tips-card {
+    border-color: #e5eaf5;
+    box-shadow: 0 8px 24px rgba(36, 62, 125, 0.05);
+}
+
+.student-performance-graph {
+    color: #40506e;
+    background: transparent;
+}
+
+.student-next-exam-card {
+    background:
+        radial-gradient(ellipse at 100% 0%, rgba(179, 197, 255, 0.32), transparent 42%),
+        linear-gradient(130deg, #347cf0, #6554e8);
+    box-shadow: 0 14px 30px rgba(65, 94, 205, 0.2);
+}
+
+.student-next-exam-button {
+    color: #4463d6;
+    box-shadow: 0 5px 14px rgba(33, 56, 123, 0.12);
+}
+
+.student-next-exam-button:hover {
+    background: #eff3ff;
+    transform: translateY(-1px);
+}
+
+.student-tips-card li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.student-tips-card li span {
+    display: grid;
+    width: 1.65rem;
+    height: 1.65rem;
+    place-items: center;
+    flex: none;
+    border-radius: 0.6rem;
+    color: #5872dc;
+    background: #edf1ff;
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+
+.student-workspace-content .bg-gray-50\/50 {
+    background-color: #f7f8ff;
+}
+
+.student-workspace-content .bg-gray-50 {
+    background-color: #f5f7fc;
+}
+
+.student-workspace-content .border-gray-100,
+.student-workspace-content .border-gray-200 {
+    border-color: #e5eaf4;
+}
+
+.student-workspace-content .shadow-xl,
+.student-workspace-content .shadow-2xl {
+    box-shadow: 0 14px 38px rgba(40, 62, 114, 0.1);
+}
+
+.student-workspace-content > .min-h-screen {
+    min-height: 0;
+    background: transparent;
+}
+
+.student-profile-banner {
+    background:
+        radial-gradient(ellipse at 85% 15%, rgba(255, 255, 255, 0.24), transparent 30%),
+        linear-gradient(115deg, #347cf0, #6257e8 72%, #7851de);
+}
+
+.student-security-banner {
+    background:
+        radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0.22), transparent 40%),
+        linear-gradient(145deg, #347cf0, #6753e8);
+}
+
+.student-exam-workspace {
+    color: #253554;
+    background:
+        radial-gradient(ellipse at 90% 0%, rgba(219, 234, 254, 0.55), transparent 35%),
+        #f4f7ff;
+}
+
+.student-exam-loading {
+    color: #4269e8;
+    background: #f5f7ff;
+}
+
+.student-exam-header {
+    color: #233454;
+    border-color: #e4eaf5;
+    box-shadow: 0 5px 20px rgba(38, 62, 116, 0.06);
+}
+
+.student-exam-instructions {
+    background:
+        radial-gradient(ellipse at 0% 0%, rgba(191, 219, 254, 0.55), transparent 35%),
+        #f4f7ff;
+}
+
+.student-exam-instructions > div {
+    border: 1px solid #e2e9f7;
+    border-radius: 1.5rem;
+    box-shadow: 0 22px 65px rgba(43, 69, 129, 0.13);
+}
+
+.student-exam-instructions > div > div:first-child {
+    background: linear-gradient(110deg, #347cf0, #6753e8);
+}
+
+.student-exam-instructions button,
+.student-exam-workspace .bg-indigo-600 {
+    background-color: #4269e8 !important;
+}
+
+.student-exam-instructions button:hover,
+.student-exam-workspace .bg-indigo-600:hover {
+    background-color: #3459d4 !important;
+}
+
+.student-exam-workspace > main > div > div,
+.student-exam-workspace > main > aside > div {
+    border-color: #e3e9f4;
+    border-radius: 1rem;
+    box-shadow: 0 8px 22px rgba(37, 59, 112, 0.06);
+}
+
+.student-exam-workspace .bg-indigo-50 {
+    background-color: #eef3ff !important;
+}
+
+.student-exam-workspace .text-indigo-800,
+.student-exam-workspace .text-indigo-700 {
+    color: #355bcf !important;
+}
+
+.student-result-details {
+    color: #263653;
+    background:
+        radial-gradient(ellipse at 100% 0%, rgba(219, 234, 254, 0.48), transparent 35%),
+        #f5f7ff;
+}
+
+.student-result-loading {
+    color: #4269e8;
+    background: #f5f7ff;
+}
+
+.student-result-summary,
+.student-result-question {
+    border-color: #e3e9f4;
+    box-shadow: 0 10px 28px rgba(37, 59, 112, 0.07);
+}
+
+.student-result-details .text-indigo-600 {
+    color: #4269e8 !important;
+}
+
+@media (max-width: 1100px) {
+    .student-sidebar {
+        width: 238px;
+    }
+
+    .student-workspace-content {
+        padding-inline: 1.5rem;
+    }
+}
+
+@media (max-width: 760px) {
+    .student-workspace {
+        height: 100dvh;
+    }
+
+    .student-sidebar {
+        width: 72px;
+        align-items: center;
+    }
+
+    .student-sidebar-brand {
+        width: 100%;
+        justify-content: center;
+        padding: 0.85rem 0.45rem;
+    }
+
+    .student-sidebar-brand > span:last-child,
+    .student-sidebar-profile > h2,
+    .student-sidebar-email,
+    .student-menu-label,
+    .student-nav-link > span:last-child,
+    .student-logout > span {
+        display: none;
+    }
+
+    .student-sidebar-profile {
+        width: 100%;
+        padding: 0.8rem 0.35rem;
+    }
+
+    .student-sidebar-avatar {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 0;
+    }
+
+    .student-online-indicator {
+        right: 0;
+        bottom: 0;
+    }
+
+    .student-sidebar-nav {
+        width: 100%;
+        padding: 0.75rem 0.5rem;
+    }
+
+    .student-nav-link {
+        justify-content: center;
+        padding: 0.75rem 0.45rem;
+    }
+
+    .student-sidebar-footer {
+        width: 100%;
+        padding: 0.6rem;
+    }
+
+    .student-logout {
+        padding: 0.75rem 0.25rem;
+    }
+
+    .student-workspace-header {
+        min-height: 62px;
+        padding-inline: 1rem;
+    }
+
+    .student-workspace-header h2 {
+        font-size: 0.9rem;
+    }
+
+    .student-workspace-content {
+        padding: 1.25rem 1rem;
+    }
+
+    .student-workspace-content .student-dashboard-home {
+        padding: 0;
+    }
+
+    .student-dashboard-heading {
+        padding: 1.25rem;
+    }
+
+    .student-dashboard-heading h2 {
+        font-size: 1.45rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .student-workspace *,
+    .student-workspace *::before,
+    .student-workspace *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

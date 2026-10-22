@@ -1,0 +1,20 @@
+# Dependencies (Heavy folders jo GitHub par nahi bhejne)
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment Secret Files (Passwords / API Keys)
+.env
+client/.env
+server/.env
+
+# Build & Vite Output folders
+dist/
+build/
+.vite/
+
+# Logs & System files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store

@@ -1,0 +1,173 @@
+.admin-content {
+    color: #17233e;
+    background:
+        radial-gradient(ellipse at 88% 0%, rgba(191, 219, 254, 0.55), transparent 36%),
+        radial-gradient(ellipse at 0% 100%, rgba(224, 231, 255, 0.45), transparent 32%),
+        #edf3ff;
+}
+
+.admin-content > div {
+    min-width: 0;
+}
+
+.admin-content :is(input, select, textarea) {
+    max-width: 100%;
+    border-color: #dbe4f0;
+    border-radius: 0.75rem;
+    color: #17233e;
+    background-color: #fff;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.admin-content :is(input, select, textarea)::placeholder {
+    color: #94a3b8;
+}
+
+.admin-content :is(input, select, textarea):focus {
+    border-color: #4f83f1;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+.admin-content :is(input, select, textarea):disabled {
+    color: #94a3b8;
+    background-color: #f1f5f9;
+    cursor: not-allowed;
+}
+
+.admin-content label {
+    color: #475569;
+}
+
+.admin-content div[class~="bg-white"][class*="shadow"] {
+    border-color: #e2e8f0;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.055);
+}
+
+.admin-content div[class~="bg-white"][class*="shadow"]:hover {
+    box-shadow: 0 12px 30px rgba(30, 58, 138, 0.08);
+}
+
+.admin-content :is(h1, h2, h3)[class*="text-purple-"] {
+    color: #17366f;
+}
+
+.admin-content :is(.bg-purple-700, .bg-purple-800, .bg-purple-600) {
+    background-color: #1d4ed8 !important;
+}
+
+.admin-content :is(.hover\:bg-purple-800:hover, .hover\:bg-purple-700:hover, .hover\:bg-purple-600:hover) {
+    background-color: #1e40af !important;
+}
+
+.admin-content :is(.text-purple-800, .text-purple-700, .text-purple-600, .text-purple-500) {
+    color: #1d4ed8 !important;
+}
+
+.admin-content :is(.bg-purple-100, .bg-purple-50) {
+    background-color: #eff6ff !important;
+}
+
+.admin-content :is(.text-purple-400, .text-purple-300) {
+    color: #3b82f6 !important;
+}
+
+.admin-content :is(.border-purple-100, .border-purple-200, .border-purple-500, .border-purple-700) {
+    border-color: #bfdbfe !important;
+}
+
+.admin-content table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #334155;
+    background-color: #fff;
+    font-size: 0.875rem;
+}
+
+.admin-content table thead {
+    color: #334155;
+    background-color: #eff6ff;
+}
+
+.admin-content table thead.bg-purple-700 {
+    color: #fff;
+    background: linear-gradient(100deg, #17366f, #2563eb) !important;
+}
+
+.admin-content table th {
+    border-color: #e2e8f0;
+    padding: 0.85rem 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.admin-content table td {
+    border-color: #edf1f7;
+    padding: 0.8rem 1rem;
+    vertical-align: middle;
+}
+
+.admin-content table tbody tr {
+    transition: background-color 140ms ease;
+}
+
+.admin-content table tbody tr:hover {
+    background-color: #f8fbff;
+}
+
+.admin-content button {
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.admin-content button:not(:disabled) {
+    cursor: pointer;
+}
+
+.admin-content button:focus-visible,
+.admin-content a:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.45);
+    outline-offset: 2px;
+}
+
+.admin-content div[class~="bg-gray-100"][class~="min-h-screen"],
+.admin-content div[class~="bg-slate-50"][class~="min-h-screen"] {
+    min-height: 0;
+    background: transparent;
+}
+
+.admin-content div[class~="bg-gray-200"][class~="text-white"] {
+    background: #eff6ff !important;
+    color: #17366f !important;
+}
+
+.admin-content .overflow-x-auto {
+    max-width: 100%;
+    border-radius: 0.85rem;
+    scrollbar-color: #cbd5e1 transparent;
+    scrollbar-width: thin;
+}
+
+.admin-content [role="alert"] {
+    border-radius: 0.9rem;
+}
+
+@media (max-width: 640px) {
+    .admin-content table th,
+    .admin-content table td {
+        padding: 0.65rem 0.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .admin-content *,
+    .admin-content *::before,
+    .admin-content *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
