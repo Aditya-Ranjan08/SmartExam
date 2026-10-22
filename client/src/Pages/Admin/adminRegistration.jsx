@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 import { Eye, EyeOff, Lock, Mail, User, ShieldCheck, Loader2, Zap, FileSpreadsheet, Activity } from 'lucide-react';
 
 export const AdminRegister = () => {

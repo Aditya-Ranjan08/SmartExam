@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { server_url } from '../App';
+import { server_url } from '../config';
 
 export const useServerLoad = (intervalTime = 5000) => {
     const [load, setLoad] = useState(0);

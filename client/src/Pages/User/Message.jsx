@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Send, Edit3, Trash2, MessageSquare, Clock, CheckCircle2, AlertCircle, Info } from 'lucide-react';
 import { toast } from 'react-toastify';
-import { server_url } from '../../App';
+import { server_url } from '../../config';
 import { confirmDelete } from '../../Components/confirmDelete';
 import { DeleteModal } from '../../Components/DeleteModel';
 

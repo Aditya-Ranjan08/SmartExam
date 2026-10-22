@@ -3,7 +3,7 @@ import { AttemptedPassedGraph } from "../../Components/AttemptedPassedGraph";
 import { BookOpen, Trophy, Clock, ArrowRight, XCircle, CheckCircle } from 'lucide-react';
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 
 export const UserHomeDashboard = () => {
 

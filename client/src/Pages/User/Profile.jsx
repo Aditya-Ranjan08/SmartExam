@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { server_url } from '../../App';
+import { server_url } from '../../config';
 import { User, Mail, Phone, GraduationCap, School, MapPin, Save, Edit2, Calendar, BookOpen, Trash2 } from 'lucide-react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'; // ✅ Missing Import Added

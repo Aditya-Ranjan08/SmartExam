@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { KeyRound, ShieldCheck, Eye, EyeOff, Lock, RefreshCw } from 'lucide-react';
 import { toast } from 'react-toastify';
-import { server_url } from '../../App';
+import { server_url } from '../../config';
 import { useParams } from 'react-router-dom';
 
 export const ChangePassword = () => {

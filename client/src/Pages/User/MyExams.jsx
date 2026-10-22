@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PlayCircle, Calendar, Clock, Play } from 'lucide-react'; // Icons ke liye
-import { server_url } from '../../App';
+import { server_url } from '../../config';
 
 export const Myexams = () => {
     const [data, setData] = useState([]);

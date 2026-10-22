@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 import { confirmDelete } from "../../Components/confirmDelete";
 import { toast } from "react-toastify";
 

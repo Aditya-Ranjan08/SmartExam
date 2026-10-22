@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import Swal from 'sweetalert2';
 import { useParams, useNavigate } from "react-router";
 import axios from "axios";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 
 // Custom Hooks
 import { useExamTimer } from "../../ExamPageFeaturesAndSecurity/hooks/useExamTimer";

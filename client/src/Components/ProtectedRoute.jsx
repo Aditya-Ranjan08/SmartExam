@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { server_url } from "../App";
+import { server_url } from "../config";
 
 export const ProtectedRoute = ({ children }) => {
 

@@ -5,7 +5,7 @@ import {
   ChevronLeft, ChevronRight, GraduationCap,
   Calendar, BookOpen, User
 } from "lucide-react";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 
 export const AdvancedReport = () => {
   // --- States ---

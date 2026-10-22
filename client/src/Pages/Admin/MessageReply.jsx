@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 import { toast } from "react-toastify";
 import { Trash2, Send, Edit, MessageSquare, User, Mail, X, CheckCircle } from "lucide-react";
 import { AdminDeleteModal } from "../../Components/AdminDeleteModel";

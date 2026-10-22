@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { CheckCircle, XCircle, Circle, HelpCircle } from 'lucide-react';
-import { server_url } from '../../App';
+import { server_url } from '../../config';
 import './UserWorkspace.css';
 
 export const ResultDetails = () => {

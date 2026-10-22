@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Trophy, Calendar, CheckCircle, XCircle, ChevronRight, User } from 'lucide-react';
-import { server_url } from '../../App';
+import { server_url } from '../../config';
 import { Link } from 'react-router-dom';
 
 export const Result = () => {

@@ -1,6 +1,6 @@
 import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 import axios from "axios";
 import { io } from "socket.io-client";
 

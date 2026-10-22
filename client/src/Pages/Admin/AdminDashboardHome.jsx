@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createElement, useCallback, useEffect, useState } from "react";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 import {
     BookOpen,
     Users,

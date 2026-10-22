@@ -21,8 +21,20 @@ const { Examinee } = require("./models/examinee-model");
 const app = express();
 const server = http.createServer(app); // 4. Server create karein
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://smart-exam-kappa.vercel.app",
+    ...(process.env.FRONTEND_URL || "").split(",").map((origin) => origin.trim()).filter(Boolean)
+];
+
 const corsOptions = {
-    origin: "http://localhost:5173",
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+            return;
+        }
+        callback(new Error(`Origin ${origin} is not allowed by CORS`));
+    },
     methods: "POST, GET, PUT, DELETE, PATCH, HEAD",
     credentials: true
 };

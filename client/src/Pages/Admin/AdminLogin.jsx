@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createElement, useState, useEffect } from 'react';
-import { server_url } from '../../App';
+import { server_url } from '../../config';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Eye, EyeOff, Lock, ShieldCheck, Loader2, Users, ArrowRightToLine, GraduationCap, FileText, ChartNoAxesColumnIncreasing, UserRound, CircleHelp } from 'lucide-react';

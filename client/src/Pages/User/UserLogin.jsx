@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { server_url } from '../../App';
+import { server_url } from '../../config';
 import { toast } from 'react-toastify';
 import { Lock, Mail, ShieldCheck, X, ArrowLeft, Loader2, EyeOff, Eye, GraduationCap, ArrowRightToLine } from 'lucide-react';
 import { socket } from '../../socket';

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 import { Lock, ShieldCheck, Eye, EyeOff, KeyRound, Save } from "lucide-react";
 
 export const AdminChangePassword = () => {

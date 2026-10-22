@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { server_url } from "../../App";
+import { server_url } from "../../config";
 import { confirmDelete } from "../../Components/confirmDelete";
 
 export const Subject = () => {

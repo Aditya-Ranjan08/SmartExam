@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-const server_url = import.meta.env.VITE_SERVER_URL;
+import { server_url } from "./config";
 
 export const socket = io(server_url, {
     withCredentials: true,
