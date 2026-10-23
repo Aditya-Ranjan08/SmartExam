@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { server_url } from "../../config";
 import { confirmDelete } from "../../Components/confirmDelete";
 import { toast } from "react-toastify";
@@ -36,18 +36,17 @@ export const Examinee = () => {
 
 
     /*================= FETCH =================*/
-    const handlefetchSession = async () => {
+    const handlefetchSession = useCallback(async () => {
         try {
             const res = await axios.get(`${server_url}/api/session`, { withCredentials: true });
             setAllSessions(res.data.result);
             console.log(res.data.result);
-        } catch (err) {
+        } catch {
             toast.error("Failed to fetch sessions");
-            console.error("Fetch error:", err);
         }
-    }
+    }, []);
 
-    const handlefetch = async (page = 1) => {
+    const handlefetch = useCallback(async (page = 1) => {
         try {
             setLoading(true);
             const res = await axios.get(
@@ -68,11 +67,11 @@ export const Examinee = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [debouncedSearch, sessionFilter, courseFilter, branchFilter, yearFilter]);
 
     useEffect(() => {
         handlefetchSession();
-    }, []);
+    }, [handlefetchSession]);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -84,7 +83,7 @@ export const Examinee = () => {
 
     useEffect(() => {
         handlefetch(currentPage);
-    }, [currentPage, debouncedSearch, sessionFilter, courseFilter, branchFilter, yearFilter]);
+    }, [currentPage, handlefetch]);
 
 
     /* ================= CASCADING LOGIC ================= */
@@ -128,7 +127,7 @@ export const Examinee = () => {
                 handlefetch(currentPage);
             }
 
-        } catch (error) {
+        } catch {
             toast.error("Delete failed");
         }
 
@@ -191,7 +190,7 @@ export const Examinee = () => {
                 handlefetch(currentPage);
 
             }
-        } catch (error) {
+        } catch {
             toast.error("Update failed");
         }
 

@@ -611,17 +611,12 @@ const getReport = async (req, res) => {
         if (exportExcel === 'true') {
             const allData = await ExamAttempted.aggregate(pipeline);
 
-            const excelRows = allData.map(item => {
+            const summaryRows = allData.map(item => {
                 const subjectStats = {};
 
                 item.submittedAnswers.forEach((ans) => {
-                    // 1. Pehle question dhundo
                     const qDetail = item.questionDetails.find(q => q._id.toString() === ans.questionId.toString());
-
-                    // 2. Phir us question ki subject ID se subject ka naam dhundo
                     const subInfo = item.subjectDetails.find(s => s._id.toString() === qDetail?.subject?.toString());
-
-                    // Agar naam mil gaya to wo, warna ID, warna 'General'
                     const subName = subInfo ? subInfo.name : (qDetail?.subject || "General");
 
                     if (!subjectStats[subName]) {
@@ -631,7 +626,6 @@ const getReport = async (req, res) => {
                     if (ans.isCorrect) subjectStats[subName].score += 1;
                 });
 
-                // 2. Map subjects to string: "Physics: 10/12 | Maths: 8/10"
                 const subjectString = Object.keys(subjectStats).length > 0
                     ? Object.entries(subjectStats)
                         .map(([name, stat]) => `${name}: ${stat.score}/${stat.total}`)
@@ -648,14 +642,37 @@ const getReport = async (req, res) => {
                     "Exam Title": item.exam?.title || "N/A",
                     "Subject Breakdown": subjectString,
                     "Total Score": `${item.score}/${item.totalMarks}`,
-                    "Result Status": item.status,
-                    "Detailed Q&A": item.submittedAnswers.map((a, i) => `Q${i + 1}:${a.isCorrect ? '✔' : '✘'}(Sel:${a.selectedOption})`).join(", ")
+                    "Passing Marks": item.passingMarks || 0,
+                    "Result Status": item.status || "N/A"
                 };
             });
 
-            const worksheet = XLSX.utils.json_to_sheet(excelRows);
+            const questionRows = [];
+            allData.forEach((item) => {
+                item.submittedAnswers.forEach((answer, index) => {
+                    const qDetail = item.questionDetails.find(q => q._id.toString() === answer.questionId.toString());
+                    questionRows.push({
+                        "Examinee Name": item.examinee?.name || "N/A",
+                        "Email": item.examinee?.email || "N/A",
+                        "Course": item.examinee?.course || "N/A",
+                        "Branch": item.examinee?.branch || "N/A",
+                        "Year": item.examinee?.year || "N/A",
+                        "Session": item.examinee?.session || "N/A",
+                        "Exam Title": item.exam?.title || "N/A",
+                        "Question #": index + 1,
+                        "Question": qDetail?.question || qDetail?.text || "Question unavailable",
+                        "Selected Option": answer.selectedOption ?? "Not Attempted",
+                        "Correct Answer": (answer.correctOption ?? qDetail?.correctAnswer) || "N/A",
+                        "Result": answer.isCorrect ? "Correct" : "Incorrect"
+                    });
+                });
+            });
+
             const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "Master Report");
+            const summarySheet = XLSX.utils.json_to_sheet(summaryRows);
+            const questionSheet = XLSX.utils.json_to_sheet(questionRows);
+            XLSX.utils.book_append_sheet(workbook, summarySheet, "Summary Report");
+            XLSX.utils.book_append_sheet(workbook, questionSheet, "Question Breakdown");
 
             const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
             res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

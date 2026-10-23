@@ -93,7 +93,7 @@ export const GetExams = () => {
     useEffect(() => {
         // Agar questions load ho gaye hain aur local storage mein purana data hai
         // aur current answers state abhi khali hai, tabhi set karein.
-        if (questions.length > 0 && savedState && Object.keys(answers).length === 0) {
+        if (questions.length > 0 && savedState && Object.keys(latestAnswersRef.current).length === 0) {
             setAnswers(savedState.answers || {});
             setMarkedForReview(savedState.review || {});
             console.log("Progress Resumed!");
@@ -111,13 +111,13 @@ export const GetExams = () => {
     // --- Submission Logic ---
     const handleSubmit = useCallback(async () => {
         console.log("Submitted Exam Id", examId)
-        console.log("Submitted Exam Answer", answers)
+        console.log("Submitted Exam Answer", latestAnswersRef.current)
 
         if (submittingRef.current || submitted) return;
         submittingRef.current = true;
 
         try {
-            const res = await axios.post(
+            await axios.post(
                 `${server_url}/api/exams/submit-exam`,
                 { examId, answers: latestAnswersRef.current },
                 { withCredentials: true }

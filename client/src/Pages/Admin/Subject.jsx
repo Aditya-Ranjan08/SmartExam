@@ -59,7 +59,7 @@ export const Subject = () => {
             const res = await axios.get(`${server_url}/api/subject`, { withCredentials: true });
             setData(res.data.result || res.data);
 
-        } catch (err) {
+        } catch {
             toast.error("Failed to fetch subjects");
         } finally {
             setLoading(false);

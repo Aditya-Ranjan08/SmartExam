@@ -17,7 +17,7 @@ export const AdminChangePassword = () => {
         if (form.np !== form.cnp) return toast.error("New passwords do not match");
         setLoading(true);
         try {
-            const response = await axios.put(`${server_url}/api/admin/changepassword`, form, { withCredentials: true });
+            await axios.put(`${server_url}/api/admin/changepassword`, form, { withCredentials: true });
             toast.success("Password updated");
             setform({ op: "", np: "", cnp: "" });
         } catch (er) {

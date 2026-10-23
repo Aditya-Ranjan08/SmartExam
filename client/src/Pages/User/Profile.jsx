@@ -45,7 +45,7 @@ export const Profile = () => {
                         setAvailableYears(years);
                     }
                 }
-            } catch (err) {
+            } catch {
                 toast.error("Failed to load data");
             }
         };
@@ -92,7 +92,7 @@ export const Profile = () => {
         try {
             const formData = new FormData();
             // User object se wahi keys bhejein jo update karni hain
-            const { profileImage, profileImagePublicId, ...textData } = user;
+            const { profileImage: _profileImage, profileImagePublicId: _profileImagePublicId, ...textData } = user;
             Object.keys(textData).forEach(key => {
                 formData.append(key, textData[key]);
             });
@@ -139,7 +139,7 @@ export const Profile = () => {
                     setPreviewUrl("");
                     setSelectedImage(null);
                 }
-            } catch (err) {
+            } catch {
                 toast.error("Failed to remove image");
             } finally { setLoading(false); }
         }

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { Send, Edit3, Trash2, MessageSquare, Clock, CheckCircle2, AlertCircle, Info } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { server_url } from '../../config';
-import { confirmDelete } from '../../Components/confirmDelete';
 import { DeleteModal } from '../../Components/DeleteModel';
 
 export const Message = () => {
@@ -21,6 +20,16 @@ export const Message = () => {
         setIsDeleteModalOpen(true);
     };
 
+    const fetchUserMessages = useCallback(async () => {
+        if (!userId) return;
+        try {
+            const res = await axios.get(`${server_url}/api/message/user/${userId}`);
+            setMessages(res.data.message || []);
+        } catch {
+            console.error('Error fetching user messages');
+        }
+    }, [userId]);
+
     const handleConfirmDelete = async (deleteType) => {
         setIsDeleteModalOpen(false);
         if (!userId || !selectedMsgId) return;
@@ -34,7 +43,7 @@ export const Message = () => {
 
             toast.success(deleteType === 'both' ? 'Deleted for everyone' : 'Hidden from you');
             fetchUserMessages();
-        } catch (err) {
+        } catch {
             toast.error('Delete failed');
         }
     };
@@ -45,28 +54,18 @@ export const Message = () => {
                 const res = await axios.get(`${server_url}/api/examinee/currentuser`, { withCredentials: true });
                 if (res.data.success) setUser(res.data.user);
                 // console.log("Current User",res.data.user);
-            } catch (err) {
+            } catch {
                 toast.error("Failed to load profile");
             }
         };
         fetchUser();
     }, []);
 
-    const fetchUserMessages = async () => {
-        if (!userId) return;
-        try {
-            const res = await axios.get(`${server_url}/api/message/user/${userId}`);
-            setMessages(res.data.message || []);
-        } catch (err) {
-            console.error('Error fetching user messages:', err);
-        }
-    };
-
     useEffect(() => {
         if (userId) {
             fetchUserMessages();
         }
-    }, [userId]);
+    }, [userId, fetchUserMessages]);
 
     const handleEditClick = (msg) => {
         setEditingId(msg._id);

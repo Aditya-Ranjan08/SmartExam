@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { server_url } from "../../config";
 import { toast } from "react-toastify";
@@ -65,7 +65,7 @@ export const Session = () => {
         }
     };
 
-    const handleFetch = async () => {
+    const handleFetch = useCallback(async () => {
         try {
             setLoading(true)
             const res = await axios.get(
@@ -73,13 +73,13 @@ export const Session = () => {
             );
             setData(res.data.result);
 
-        } catch (err) {
+        } catch {
             toast.error("Failed to fetch sessions");
         }
         finally {
             setLoading(false)
         }
-    };
+    }, [search, sessionFilter, courseFilter, branchFilter]);
 
     const handleDelete = async (id) => {
         const confirm = await confirmDelete();
@@ -125,7 +125,7 @@ export const Session = () => {
 
     useEffect(() => {
         handleFetch();
-    }, [search, sessionFilter, courseFilter, branchFilter]);
+    }, [handleFetch]);
 
     return (
         <div className="space-y-6">

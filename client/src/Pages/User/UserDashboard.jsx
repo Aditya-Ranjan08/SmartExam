@@ -1,6 +1,6 @@
 import axios from "axios";
 import { server_url } from "../../config";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
     LogOut, BookOpen, Trophy, Key, MessageSquare, UserCircle, GraduationCap,
@@ -15,20 +15,24 @@ export const UserDashboard = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    useEffect(() => {
-        getCurrentUser();
-    }, []);
-
-    const getCurrentUser = async () => {
+    const getCurrentUser = useCallback(async () => {
         try {
             const response = await axios.get(`${server_url}/api/examinee/currentuser`, { withCredentials: true });
             if (response.data.success) {
                 setCurrentUser(response.data.user);
             }
-        } catch (error) {
+        } catch {
             console.error("User fetch error");
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        const timer = window.setTimeout(() => {
+            void getCurrentUser();
+        }, 0);
+
+        return () => window.clearTimeout(timer);
+    }, [getCurrentUser]);
 
     const menuItems = [
         { name: "My Profile", path: "/userdashboard/profile", icon: <UserCircle size={20} /> },
@@ -52,7 +56,7 @@ export const UserDashboard = () => {
                 toast.success(response.data.message || "Logged out successfully");
                 navigate("/");
             }
-        } catch (error) {
+        } catch {
             toast.error("Logout failed");
         }
     };

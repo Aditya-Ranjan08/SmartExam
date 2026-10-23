@@ -172,7 +172,7 @@ export const QuestionBank = () => {
             toast.success("Question deleted successfully");
             handlefetch();
 
-        } catch (err) {
+        } catch {
             toast.error("Delete failed");
         }
     };

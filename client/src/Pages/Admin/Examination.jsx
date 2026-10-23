@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { server_url } from "../../config";
 import { toast } from "react-toastify";
@@ -63,7 +63,7 @@ export const Examination = () => {
         }
     };
 
-    const fetchFilteredExams = async () => {
+    const fetchFilteredExams = useCallback(async () => {
         try {
             setLoading(true);
             const res = await axios.get(
@@ -86,14 +86,14 @@ export const Examination = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [filterCourse, filterBranch, filterSession, filterYear, search, isGrouped]);
 
     useEffect(() => {
         const delay = setTimeout(() => {
             fetchFilteredExams();
         }, 500);
         return () => clearTimeout(delay);
-    }, [search, filterCourse, filterBranch, filterSession, filterYear, isGrouped]);
+    }, [fetchFilteredExams]);
 
 
     // ====CASCADING LOGIC (The Core Logic)====
