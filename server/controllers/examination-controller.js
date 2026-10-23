@@ -522,7 +522,7 @@ const getExamQuestions = async (req, res) => {
             });
         }
 
-        const examStart = new Date(`${exam.date}T${exam.time}`);
+        const examStart = new Date(`${exam.date}T${exam.time}+05:30`);
         const examEnd = new Date(examStart.getTime() + exam.duration * 60000);
         const now = new Date();
 
