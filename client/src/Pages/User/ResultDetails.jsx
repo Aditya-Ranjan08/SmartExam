@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { CheckCircle, XCircle, Circle, HelpCircle } from 'lucide-react';
+import { CheckCircle, XCircle, Circle, HelpCircle, Download } from 'lucide-react';
+import { toast } from 'react-toastify';
 import { server_url } from '../../config';
+import { downloadResultScorecard } from '../../utils/resultScorecard';
 import './UserWorkspace.css';
 
 export const ResultDetails = () => {
@@ -26,7 +28,17 @@ export const ResultDetails = () => {
         fetchDetails();
     }, [id]);
 
+    const handleDownloadScorecard = async () => {
+        try {
+            await downloadResultScorecard(result);
+        } catch (error) {
+            console.error("Unable to generate result scorecard:", error);
+            toast.error("Could not generate the PDF scorecard. Please try again.");
+        }
+    };
+
     if (loading) return <div className="student-result-loading p-20 text-center font-bold animate-pulse text-indigo-600">Generating Answer Key...</div>;
+    if (!result) return <div className="student-result-loading p-20 text-center font-bold text-gray-600">Result details are unavailable. Please return to your results and try again.</div>;
 
     return (
         <div className="student-result-details max-w-4xl mx-auto p-4 md:p-8 min-h-screen">
@@ -43,10 +55,18 @@ export const ResultDetails = () => {
                             <p className="text-[10px] uppercase font-black text-gray-400">Final Score</p>
                             <p className="text-xl font-bold text-indigo-600">{result?.score} <span className="text-gray-300 text-sm">/ {result?.totalMarks}</span></p>
                         </div>
-                        <div className={`px-6 py-2 rounded-2xl flex items-center shadow-sm font-bold border ${result?.status === 'Passed' ? 'bg-green-50 border-green-100 text-green-700' : 'bg-red-50 border-red-100 text-red-700'
+                        <div className={`px-6 py-2 rounded-2xl flex items-center shadow-sm font-bold border ${result?.status === 'Passed' || result?.status === 'Pass' ? 'bg-green-50 border-green-100 text-green-700' : 'bg-red-50 border-red-100 text-red-700'
                             }`}>
-                            {result?.status}
+                            {result?.status === 'Passed' || result?.status === 'Pass' ? 'Passed' : 'Failed'}
                         </div>
+                        <button
+                            type="button"
+                            onClick={handleDownloadScorecard}
+                            className="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-5 py-3 font-bold text-white shadow-lg shadow-indigo-200 transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            <Download size={18} />
+                            Download PDF
+                        </button>
                     </div>
                 </div>
             </header>
