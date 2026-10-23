@@ -643,7 +643,8 @@ const getReport = async (req, res) => {
                     "Subject Breakdown": subjectString,
                     "Total Score": `${item.score}/${item.totalMarks}`,
                     "Passing Marks": item.passingMarks || 0,
-                    "Result Status": item.status || "N/A"
+                    "Result Status": item.status || "N/A",
+                    "Detailed Q&A": item.submittedAnswers.map((a, i) => `Q${i + 1}:${a.isCorrect ? '✔' : '✘'}(Sel:${a.selectedOption ?? 'Not Attempted'}, Correct:${a.correctOption ?? 'N/A'})`).join(" | ")
                 };
             });
 
@@ -659,6 +660,7 @@ const getReport = async (req, res) => {
                         "Year": item.examinee?.year || "N/A",
                         "Session": item.examinee?.session || "N/A",
                         "Exam Title": item.exam?.title || "N/A",
+                        "Result Status": item.status || "N/A",
                         "Question #": index + 1,
                         "Question": qDetail?.question || qDetail?.text || "Question unavailable",
                         "Selected Option": answer.selectedOption ?? "Not Attempted",
