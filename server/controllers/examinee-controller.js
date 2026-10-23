@@ -1,5 +1,6 @@
 const { cloudinary } = require("../config/cloudinary");
 const { Examinee } = require("../models/examinee-model");
+const { ExamAttempted } = require("../models/exam-attempted-model");
 const { getAuthCookieOptions } = require("../config/auth-cookie");
 const fs = require("fs");
 const XLSX = require("xlsx")
@@ -224,37 +225,72 @@ const getAll = async (req, res) => {
 
 // export excel
 const exportExamineeExcel = async (req, res) => {
+    try {
+        const students = await Examinee.find()
+            .select("name email phone college course branch session year")
+            .lean();
 
-    const students = await Examinee.find()
+        const attempts = await ExamAttempted.find({
+            examineeId: { $in: students.map((student) => student._id) }
+        })
+            .populate("examId", "title")
+            .select("examineeId examId status")
+            .lean();
 
-    const formatted = students.map((s) => ({
-        Name: s.name,
-        Email: s.email,
-        Phone: s.phone,
-        College: s.college,
-        Course: s.course,
-        Branch: s.branch,
-        Session: s.session,
-        Year: s.year
-    }))
+        const attemptsByStudent = new Map();
+        attempts.forEach((attempt) => {
+            const studentId = attempt.examineeId.toString();
+            const studentAttempts = attemptsByStudent.get(studentId) || [];
+            studentAttempts.push(attempt);
+            attemptsByStudent.set(studentId, studentAttempts);
+        });
 
-    const worksheet = XLSX.utils.json_to_sheet(formatted)
+        const formatted = students.map((student) => {
+            const studentAttempts = attemptsByStudent.get(student._id.toString()) || [];
+            const examStatuses = studentAttempts.length
+                ? studentAttempts.map((attempt) => {
+                    const status = attempt.status === "Passed" || attempt.status === "Pass"
+                        ? "Passed"
+                        : "Failed";
+                    return `${attempt.examId?.title || "Exam"}: ${status}`;
+                }).join(" | ")
+                : "Not Attempted";
 
-    const workbook = XLSX.utils.book_new()
+            return {
+                Name: student.name,
+                Email: student.email,
+                Phone: student.phone,
+                College: student.college,
+                Course: student.course,
+                Branch: student.branch,
+                Session: student.session,
+                Year: student.year,
+                "Exam Status": examStatuses
+            };
+        });
 
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Students")
+        const worksheet = XLSX.utils.json_to_sheet(formatted);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Students");
 
-    const buffer = XLSX.write(workbook, {
-        bookType: "xlsx",
-        type: "buffer"
-    })
+        const buffer = XLSX.write(workbook, {
+            bookType: "xlsx",
+            type: "buffer"
+        });
 
-    res.setHeader(
-        "Content-Disposition",
-        "attachment; filename=students.xlsx"
-    )
+        res.setHeader(
+            "Content-Disposition",
+            "attachment; filename=students.xlsx"
+        );
 
-    res.send(buffer)
+        res.send(buffer);
+    } catch (error) {
+        console.error("Examinee Excel export error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to export examinees"
+        });
+    }
 
 }
 
